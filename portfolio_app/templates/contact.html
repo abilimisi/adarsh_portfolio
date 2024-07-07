@@ -1,0 +1,34 @@
+
+
+<div class="container" id="contact">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow ">
+                <form action="contacts" method="POST">
+
+                          {% csrf_token %}
+
+                    <div class="form-group mb-3 ">
+                       <div class="pt-2">
+                             <input type="text" name="name" id="name" placeholder="Enter Username" class="form-control"  required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                       <div class="pt-2">
+                            <input type="text" name="email" id="fullname" class="form-control" placeholder="Enter Your Email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="pt-2">
+                             <input type="text" name="desc" id="email" class="form-control" placeholder="Enter message" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn mt-3 shadow btn-success px-4">Send message</button>
+
+                    
+                </form>
+        </div>
+    </div>
+</div>

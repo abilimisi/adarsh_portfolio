@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <body>
+    <!-- heading section -->
+    <header class="header">
+      <a href="#" class="logo">{{ name_details.my_name }}</a>
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- home page design -->
+    <section class="home" id="home">
+      <div class="home-content">
+        <h3>Hello, It's Me</h3>
+        <h1>{{ name_details.my_name }}</h1>
+        <h3>And I'm <span>{{ name_details.my_profession }}</span></h3>
+        <p>{{ name_details.my_profession_details | safe }}</p>
+
+        <!-- social links adding -->
+
+        <div class="social-links">
+          <a href="{{ links.linkedin_url }}" target="_blank"
+            ><i class="bx bxl-linkedin-square"></i
+          ></a>
+          <a href="{{ links.github_url }}" target="_blank"><i class="bx bxl-github"></i></a>
+        </div>
+        <a href="{{ links.resume_file.url}}" class="home-btn " download>Download CV</a>
+      
+        <a href="#projects" class="home-btn">My Projects</a>
+      </div>
+      <div class="home-image">
+        <img src="{{ links.profile_img.url }}" alt="profile Photo" />
+      </div>
+    </section>
+
+    <!-- About page  -->
+    
+    <section class="about" id="about">
+      
+      <div class="about-content">
+        <h3>About <span>Me</span></h3>
+          {% if about %}
+            <p>{{ about.content | safe }}</p>
+          {% else %}
+            <p>No information available about me at the moment.</p>
+          {% endif %}
+      </div>
+
+        <!-- Educational Details -->
+
+      <h5 class="edu-head">Educational Details</h5>
+      <div class="education-div">
+        {% for e in edcn %}
+        <div class="education">
+          <h4>{{ e.course }}</h4>
+          <p>{{ e.year }}</p>
+          <p>{{ e.institution }}</p>
+          <p>{{ e.location }}</p>
+        </div>
+        {% endfor %}
+      </div>  
+    
+    </section>
+
+    <!-- skills page -->
+    <section class="skills" id="skills">
+      <div class="skills-content">
+        <h3 class="my-skills">My <span>Skills</span></h3>
+        
+        <!-- Backend Skills Column -->
+        <div class="skills-column">
+          <h5>Backend</h5>
+          <div class="skills-list">
+            {% for skill in skills %}
+              {% if skill.category == 'Backend' %}
+                <h1><i class="{{ skill.icon_class }}"></i>{{ skill.name }}</h1>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        
+        <!-- Frontend Skills Column -->
+        <div class="skills-column">
+          <h5>Frontend</h5>
+          <div class="skills-list">
+            {% for skill in skills %}
+              {% if skill.category == 'Frontend' %}
+                <h1><i class="{{ skill.icon_class }}"></i>{{ skill.name }}</h1>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Works Known -->
+        <h2>Works Known</h2>
+        {% for work_detail in work_details %}
+        <div class="works">
+            <i class="bx bx-code-alt"></i>
+            <h4>{{ work_detail.work_name }}</h4>
+            <p>{{ work_detail.work_desc | safe }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    
+    <!-- Projects page -->
+    <section class="projects" id="projects">
+      <div class="projects-content">
+        <h3>My <span>Projects</span></h3>
+        {% for project in projects %}
+        <div class="projects-list">
+          <h5>{{ project.projectname }}</h5>
+          <p>{{ project.projectdesc | safe }}
+            <h6><a href="{{ project.live_demo }}" target="_blank">Live Demo</a></h6>
+            <h6><a href="{{ project.github_repo }}" target="_blank">GitHub Repo</a></h6>
+          </p>
+            <br>
+          <h6><span class="tech">Technologies Used: </span>{{ project.technologies }}</h6>
+        </div>
+        {% endfor %}
+
+        
+          
+        
+
+      </div>
+    </section>
+    <!-- contact page -->
+    <section class="contact" id="contact">
+      <div class="contact-content">
+        <h3>Contact</h3>
+        {% include "contact.html" %}
+      
+       <div class="my-details">
+        <p><a href="tel:{{ links.mobile_number }}" style="font-size: 2rem; font-weight: 300; color: #f3f5f7dd;"><i class='bx bx-mobile-alt'></i> {{ links.mobile_number }}</a></p>
+
+        <a href="mailto:{{ links.email_link }}" style="font-size: 2rem; font-weight: 300; color: #f3f5f7dd;"><i class='bx bxs-envelope'></i> {{ links.email_link }}</a>
+
+       </div>   
+    </div>
+    </section>
+    <!-- Footer design -->
+    <footer class="footer">
+      <div class="footer-text">
+        <p>Copyright &copy; 2023 by adarshbilimisi | All rights reserved</p>
+       
+        <div class="top-icon">
+        <a href="#home">  <i class='bx bx-arrow-to-top'></i></a>
+        </div>
+      </div>
+
+     
+
+    </footer>
+
+
+   {% endblock content %}
