@@ -29,7 +29,7 @@ def contacts(request):
     return render(request, 'contact.html')
 
 def getabout_me():
-    return AboutMe.objects.first()
+    return AboutMe.objects.last()
     
 def get_education_Details():
     return Education.objects.all()
